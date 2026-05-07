@@ -43,6 +43,12 @@ def get_name_by_filepath(filepath):
         return row[0][0]
 
 
+def db_empty():
+    with connect() as conn:
+        data = conn.execute("SELECT * FROM images").fetchall()
+        return len(data) == 0
+
+
 def exists_name(name):
     with connect() as conn:
         data = conn.execute(
@@ -105,4 +111,3 @@ def get_attendance():
 def clear_attendance():
     with connect() as conn:
         conn.execute("DELETE FROM attendance")
-
