@@ -5,3 +5,6 @@ pillow
 streamlit
 tf-keras
 torch
+pyyaml
+streamlit_authenticator
+
