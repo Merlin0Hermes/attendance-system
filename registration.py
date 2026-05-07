@@ -1,8 +1,6 @@
 from storage import save_image, exists_name
-import numpy
 import streamlit as st
 from PIL import Image
-import face_recognition as fr
 
 st.header("Registration")
 st.set_page_config(page_title="Registration")
@@ -16,10 +14,6 @@ with st.form("image_upload", clear_on_submit=True):
             img = Image.open(input_img)
             rgb_img = img.convert('RGB')
 
-            face_locations = fr.face_locations(numpy.array(rgb_img))
-            if len(face_locations) != 1:
-                st.error("Invalid face image")
-                st.stop()
             if exists_name(name):
                 st.error("Error: Student with same name exists")
                 st.stop()
