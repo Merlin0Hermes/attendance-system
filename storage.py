@@ -32,15 +32,22 @@ def create_tables():
             filepath TEXT NOT NULL
         )
         """)
+    Path(IMG_DIR).mkdir(parents=True, exist_ok=True)
+
 
 def get_name_by_filepath(filepath):
     with connect() as conn:
-        row = conn.execute("SELECT name FROM images WHERE filepath = ?", (filepath,)).fetchall()
+        row = conn.execute(
+            "SELECT name FROM images WHERE filepath = ?", (filepath,)
+        ).fetchall()
         return row[0][0]
+
 
 def exists_name(name):
     with connect() as conn:
-        data = conn.execute("SELECT * FROM images WHERE name LIKE ?", (name,)).fetchall()
+        data = conn.execute(
+            "SELECT * FROM images WHERE name LIKE ?", (name,)
+        ).fetchall()
         return len(data) != 0
 
 
@@ -49,16 +56,19 @@ def save_image(name: str, image: Image.Image):
     filepath = f"{IMG_DIR}/{filename}.png"
     image.save(filepath, "PNG")
     with connect() as conn:
-        conn.execute("INSERT INTO images (name, filepath) VALUES (?, ?)", (name.title(), filepath))
+        conn.execute(
+            "INSERT INTO images (name, filepath) VALUES (?, ?)",
+            (name.title(), filepath),
+        )
 
 
 def load_name_imgpath():
     with connect() as conn:
-        data = conn.execute("SELECT id, name, filepath FROM images ORDER BY name").fetchall()
-        return [
-            {"id": row[0], "name": row[1], "filepath": row[2]}
-            for row in data 
-        ]
+        data = conn.execute(
+            "SELECT id, name, filepath FROM images ORDER BY name"
+        ).fetchall()
+        return [{"id": row[0], "name": row[1], "filepath": row[2]} for row in data]
+
 
 def remove_image(row):
     with connect() as conn:
@@ -76,7 +86,7 @@ def mark_attendance(name):
         with connect() as conn:
             conn.execute(
                 "INSERT INTO attendance (name, date, time) VALUES (?, ?, ?)",
-                (name, date, time)
+                (name, date, time),
             )
     except sqlite3.IntegrityError:
         return f"{name} already marked today"
@@ -89,14 +99,10 @@ def get_attendance():
             "SELECT name, date, time FROM attendance ORDER BY date DESC, time DESC"
         ).fetchall()
 
-    return [
-        {"name": row[0], "date": row[1], "time": row[2]}
-        for row in data
-    ]
+    return [{"name": row[0], "date": row[1], "time": row[2]} for row in data]
 
 
 def clear_attendance():
     with connect() as conn:
-        conn.execute(
-            "DELETE FROM attendance"
-        )
+        conn.execute("DELETE FROM attendance")
+
