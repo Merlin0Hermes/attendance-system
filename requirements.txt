@@ -1,6 +1,5 @@
 
 numpy
-opencv-python-headless
 pillow
 streamlit
 tf-keras
