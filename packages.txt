@@ -1,3 +1,4 @@
 libgl1
+libffi7
 libglib2.0-0
 
