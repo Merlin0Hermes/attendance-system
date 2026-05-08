@@ -1,7 +1,8 @@
-deepface
+
 numpy
 opencv-python-headless
 pillow
 streamlit
 tf-keras
 torch
+deepface
