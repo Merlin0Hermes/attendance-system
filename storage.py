@@ -143,4 +143,4 @@ def get_attendance():
 def clear_attendance():
     user_id = st.session_state.user_id
     with connect() as conn:
-        conn.execute("DELETE FROM attendance WHERE user_id = ?", user_id)
+        conn.execute("DELETE FROM attendance WHERE user_id = ?", (user_id,))
