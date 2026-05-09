@@ -34,7 +34,7 @@ with st.container():
 st.header("Account")
 
 if st.session_state.get('authentication_status'):
-    st.session_state.authenticator.logout()
     st.write(f'You are logged in as **{st.session_state.get("name")}**')
+    st.session_state.authenticator.logout()
 else:
     st.rerun()
