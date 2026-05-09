@@ -7,6 +7,9 @@ import numpy as np
 from PIL import Image
 import cv2 as cv
 
+st.session_state.authenticator.login(location="unrendered")
+
+
 TOLERANCE = 0.54
 SCALE = 2
 FONT = cv.FONT_HERSHEY_DUPLEX
@@ -55,8 +58,7 @@ if img:
             batched=True,
             detector_backend="mtcnn",
             anti_spoofing=True,
-            k=1,
-            model_name="ArcFace",
+
         )
     except FaceNotDetected:
         st.write("Face not detected")

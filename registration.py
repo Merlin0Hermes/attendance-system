@@ -2,6 +2,8 @@ from storage import save_image, exists_name
 import streamlit as st
 from PIL import Image
 
+st.session_state.authenticator.login(location="unrendered")
+
 st.header("Registration")
 st.set_page_config(page_title="Registration")
 

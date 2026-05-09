@@ -2,6 +2,8 @@ from storage import get_attendance, clear_attendance
 import pandas as pd
 import streamlit as st
 
+st.session_state.authenticator.login(location="unrendered")
+
 st.header("Attendance History")
 st.set_page_config(page_title="History")
 

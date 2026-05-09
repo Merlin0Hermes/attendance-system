@@ -2,12 +2,15 @@ from pathlib import Path
 from storage import load_name_imgpath, remove_image
 import streamlit as st 
 
+st.session_state.authenticator.login(location="unrendered")
+
 @st.dialog("Remove student from database?",)
 def remove_student(row):
     clicked = st.button("Remove")
     if clicked:
         remove_image(row)
         st.rerun()
+
 
 st.title("Configuration")
 st.set_page_config("Configuration")
@@ -27,3 +30,11 @@ with st.container():
             st.image(Path(row["filepath"]), caption=row["name"], width=100)
         with col2:
             st.button("Remove", key=row["name"], on_click=remove_student, args=(row,))
+
+st.header("Account")
+
+if st.session_state.get('authentication_status'):
+    st.session_state.authenticator.logout()
+    st.write(f'You are logged in as **{st.session_state.get("name")}**')
+else:
+    st.rerun()
