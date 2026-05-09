@@ -5,6 +5,5 @@ pyyaml
 streamlit
 streamlit_authenticator
 deepface
-opencv-python-headless==4.8.0.74
-pillow==9.5.0
-deepface==0.0.89
+opencv-python-headless
+pillow
