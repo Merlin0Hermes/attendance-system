@@ -3,6 +3,7 @@ from storage import add_user
 from auth import save_config
 import streamlit as st
 
+st.set_page_config(page_title="Register")
 st.session_state.authenticator.login(location="unrendered")
 
 email, username, name = st.session_state.authenticator.register_user(password_hint=False)
