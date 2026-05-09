@@ -30,8 +30,6 @@ def load_config(path=CONFIG_PATH):
 def save_config(config=None, path=CONFIG_PATH):
     if not config:
         config = st.session_state.get("auth_config")
-    print(config)
-    print()
     with open(path, "w") as file:
         yaml.dump(config, file, default_flow_style=False, allow_unicode=True)
 

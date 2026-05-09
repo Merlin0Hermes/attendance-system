@@ -69,7 +69,6 @@ if img:
 
     names = []
     for person in res:
-        print(person)
         person = person[0]
         name = get_name(person)
         names.append(name)

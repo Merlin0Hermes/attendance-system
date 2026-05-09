@@ -25,7 +25,6 @@ with st.form("image_upload", clear_on_submit=True):
             try:
                 with st.spinner("Detecting face..."):
                     data = DeepFace.extract_faces(np.array(rgb_img), detector_backend="retinaface")
-                print(data)
             except FaceNotDetected:
                 st.error("Face not detected in image")
                 st.stop()
