@@ -1,6 +1,9 @@
+from deepface.modules.exceptions import FaceNotDetected
+from deepface import DeepFace
 from storage import save_image, exists_name
 import streamlit as st
 from PIL import Image
+import numpy as np
 
 st.session_state.authenticator.login(location="unrendered")
 
@@ -18,6 +21,13 @@ with st.form("image_upload", clear_on_submit=True):
 
             if exists_name(name):
                 st.error("Error: Student with same name exists")
+                st.stop()
+            try:
+                with st.spinner("Detecting face..."):
+                    data = DeepFace.extract_faces(np.array(rgb_img), detector_backend="dlib")
+                print(data)
+            except FaceNotDetected:
+                st.error("Face not detected in image")
                 st.stop()
 
             save_image(name, rgb_img)
