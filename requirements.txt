@@ -6,5 +6,4 @@ tf-keras
 torch
 pyyaml
 streamlit_authenticator
-dlib
 deepface
