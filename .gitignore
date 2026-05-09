@@ -222,3 +222,4 @@ test.py
 project.zip
 database/
 attendance.db
+config.yaml

@@ -4,7 +4,7 @@ from yaml import SafeLoader
 import streamlit as st
 import streamlit_authenticator as stauth
 
-CONFIG_PATH = ".streamlit/config.yaml"
+CONFIG_PATH = "config.yaml"
 
 def load_config(path=CONFIG_PATH):
     try:
