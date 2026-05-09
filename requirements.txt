@@ -2,9 +2,9 @@ numpy
 tf-keras
 torch
 pyyaml
-streamlit==1.25.0
+streamlit
 streamlit_authenticator
 deepface
 opencv-python-headless==4.8.0.74
-Pillow==9.5.0
+pillow==9.5.0
 deepface==0.0.79
